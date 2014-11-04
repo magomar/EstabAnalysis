@@ -26,30 +26,6 @@ public class MultiEstabDataModel extends EstabDataModel {
 
     @Override
     public void setEstabData(EstabData estabData, String estabName) {
-        estabData.getImage().parallelStream().map(ImageModel::new).forEach(imageModel -> imageList.add(imageModel));
-        estabData.getVehicle().parallelStream().map(VehicleModel::new).forEach(vehicleModel -> vehicleList.add(vehicleModel));
-        estabData.getWeapon().parallelStream().map(WeaponModel::new).forEach(weaponModel -> weaponList.add(weaponModel));
-        estabData.getAmmo().parallelStream().map(AmmoModel::new).forEach(ammoModel -> ammoList.add(ammoModel));
-        estabData.getSide().parallelStream().map(SideModel::new).forEach(sideModel ->{
-            sideList.add(sideModel);
-            sideModel.getNation().parallelStream().forEach(nationModel -> {
-                nationList.add(nationModel);
-                nationModel.getService().parallelStream().forEach(serviceModel -> {
-                    serviceList.add(serviceModel);
-                    serviceModel.getForce().parallelStream().forEach(forceModel -> forceList.add(forceModel));
-                });
-            });
-        });
 
-
-        name.set(estabName);
-        numVehicles.set(vehicleList.size());
-        numWeapons.set(weaponList.size());
-        numAmmos.set(ammoList.size());
-        numSides.set(sideList.size());
-        numNations.set(nationList.size());
-        numServices.set(serviceList.size());
-        numForces.set(forceList.size());
-        numEquipment.bind(numVehicles.add(numWeapons.add(numAmmos)));
     }
 }

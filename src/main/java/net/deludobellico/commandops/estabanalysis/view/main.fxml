@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.deludobellico.commandops.estabanalysis.controller.MainController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.deludobellico.commandops.estabanalysis.controller.MainController">
     <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
@@ -50,11 +50,11 @@
                 </TitledPane>
                 <VBox>
                     <children>
-                        <Button fx:id="addEstabButton" alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#addEstabAction" text="Add" />
-                        <Button fx:id="removeEstabButton" alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#removeEstabAction" text="Remove" />
-                        <Button fx:id="selectEstabButton" alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#selectEstabAction" text="&gt;" />
-                        <Button fx:id="selectAllEstabButton" alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#selectAllEstabAction" text="&gt;&gt;" />
-                  <Button fx:id="discardEstabButton" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="85.0" minWidth="60.0" mnemonicParsing="false" onAction="#discardEstabAction" text="X" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#addEstabAction" text="Add" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#removeEstabAction" text="Remove" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#selectEstabAction" text="&gt;" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" minWidth="60.0" mnemonicParsing="false" onAction="#selectAllEstabAction" text="&gt;&gt;" />
+                  <Button alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="85.0" minWidth="60.0" mnemonicParsing="false" onAction="#discardEstabAction" text="X" />
                     </children>
                 </VBox>
             <TitledPane layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="350.0" prefHeight="150.0" prefWidth="500.0" text="Selected Estabs">
@@ -73,11 +73,16 @@
                         <TableView fx:id="estabTable">
                           <columns>
                             <TableColumn fx:id="estabColumn" minWidth="50.0" prefWidth="150.0" text="Estab" />
-                              <TableColumn fx:id="forceColumn" prefWidth="75.0" text="Force" />
+                              <TableColumn fx:id="imageColumn" prefWidth="75.0" text="Images" />
+                              <TableColumn fx:id="sideColumn" prefWidth="75.0" text="Sides" />
+                              <TableColumn fx:id="nationColumn" prefWidth="75.0" text="Nations" />
+                              <TableColumn fx:id="serviceColumn" prefWidth="75.0" text="Services" />
+                              <TableColumn fx:id="forceColumn" prefWidth="75.0" text="Forces" />
                             <TableColumn fx:id="vehicleColumn" prefWidth="75.0" text="Vehicles" />
                               <TableColumn fx:id="weaponColumn" prefWidth="75.0" text="Weapons" />
-                              <TableColumn fx:id="ammoColumn" prefWidth="75.0" text="Ammo" />
-                              <TableColumn fx:id="equipmentColumn" prefWidth="75.0" text="Equipment" />
+                              <TableColumn fx:id="ammoColumn" prefWidth="75.0" text="Ammos" />
+                              <TableColumn fx:id="radioColumn" prefWidth="75.0" text="Radios" />
+                              <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
                               <TableColumn fx:id="maxIdColumn" prefWidth="75.0" text="Max Id" />
                           </columns>
                         </TableView>

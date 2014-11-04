@@ -4,16 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import net.deludobellico.commandops.estabanalysis.model.EstabDataModel;
-import net.deludobellico.commandops.estabanalysis.model.MultiEstabDataModel;
 import net.deludobellico.commandops.estabanalysis.util.FileIO;
-
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -28,69 +25,69 @@ import java.util.ResourceBundle;
  */
 public class MainController {
     private static final String ESTAB_DATA_FOLDER = "datasets";
-    private static final FilenameFilter XML_FILTER = (File dir, String name)-> {
-            String lowercaseName = name.toLowerCase();
-            if (lowercaseName.endsWith(".xml")) {
-                return true;
-            } else {
-                return false;
-            }
+    private static final FilenameFilter XML_FILTER = (File dir, String name) -> {
+        String lowercaseName = name.toLowerCase();
+        if (lowercaseName.endsWith(".xml")) {
+            return true;
+        } else {
+            return false;
+        }
     };
 
     private ObservableList<File> availableEstabList = FXCollections.observableArrayList();
     private ObservableList<File> selectedEstabList = FXCollections.observableArrayList();
     private ObservableList<EstabDataModel> estabDataModels = FXCollections.observableArrayList();
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
+    @FXML
     private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
+    @FXML
     private URL location;
 
-    @FXML // fx:id="addEstabButton"
-    private Button addEstabButton; // Value injected by FXMLLoader
+    @FXML
+    private TableView<EstabDataModel> estabTable;
 
-    @FXML // fx:id="availableEstabListView"
-    private ListView<File> availableEstabListView; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> imageColumn;
 
-    @FXML // fx:id="removeEstabButton"
-    private Button removeEstabButton; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> maxIdColumn;
 
-    @FXML // fx:id="selectEstabButton"
-    private Button selectEstabButton; // Value injected by FXMLLoader
+    @FXML
+    private ListView<File> availableEstabListView;
 
-    @FXML // fx:id="discardEstabButton"
-    private Button discardEstabButton; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> radioColumn;
 
-    @FXML // fx:id="selectAllEstabButton"
-    private Button selectAllEstabButton; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> totalColumn;
 
-    @FXML // fx:id="selectedEstabListView"
-    private ListView<File> selectedEstabListView; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> ammoColumn;
 
-    @FXML // fx:id="estabTable"
-    private TableView<EstabDataModel> estabTable; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, String> estabColumn;
 
-    @FXML // fx:id="estabColumn"
-    private TableColumn<EstabDataModel, String> estabColumn; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> sideColumn;
 
-    @FXML // fx:id="forceColumn"
-    private TableColumn<EstabDataModel, Integer> forceColumn; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> vehicleColumn;
 
-    @FXML // fx:id="vehicleColumn"
-    private TableColumn<EstabDataModel, Integer> vehicleColumn; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> nationColumn;
 
-    @FXML // fx:id="weaponColumn"
-    private TableColumn<EstabDataModel, Integer> weaponColumn; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> weaponColumn;
 
-    @FXML // fx:id="ammoColumn"
-    private TableColumn<EstabDataModel, Integer> ammoColumn; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> serviceColumn;
 
-    @FXML // fx:id="equipmentColumn"
-    private TableColumn<EstabDataModel, Integer> equipmentColumn; // Value injected by FXMLLoader
+    @FXML
+    private ListView<File> selectedEstabListView;
 
-    @FXML // fx:id="maxIdColumn"
-    private TableColumn<EstabDataModel, Integer> maxIdColumn; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<EstabDataModel, Integer> forceColumn;
 
     @FXML
     void addEstabAction(ActionEvent event) {
@@ -140,7 +137,10 @@ public class MainController {
     @FXML
     void analyseAction(ActionEvent event) {
         estabDataModels.clear();
-        selectedEstabList.stream().map(EstabDataModel::new).forEach(estabDM -> estabDataModels.add(estabDM));
+        selectedEstabList.stream().map(EstabDataModel::new).forEach(estabDM -> {
+            estabDataModels.add(estabDM);
+            System.out.println(estabDM.toString());
+        });
     }
 
     @FXML
@@ -152,20 +152,21 @@ public class MainController {
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert estabTable != null : "fx:id=\"estabTable\" was not injected: check your FXML file 'main.fxml'.";
-        assert addEstabButton != null : "fx:id=\"addEstabButton\" was not injected: check your FXML file 'main.fxml'.";
+        assert imageColumn != null : "fx:id=\"imageColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert maxIdColumn != null : "fx:id=\"maxIdColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert availableEstabListView != null : "fx:id=\"availableEstabListView\" was not injected: check your FXML file 'main.fxml'.";
-        assert selectEstabButton != null : "fx:id=\"selectEstabButton\" was not injected: check your FXML file 'main.fxml'.";
+        assert radioColumn != null : "fx:id=\"radioColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert totalColumn != null : "fx:id=\"totalColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert ammoColumn != null : "fx:id=\"ammoColumn\" was not injected: check your FXML file 'main.fxml'.";
-        assert discardEstabButton != null : "fx:id=\"discardEstabButton\" was not injected: check your FXML file 'main.fxml'.";
-        assert selectAllEstabButton != null : "fx:id=\"selectAllEstabButton\" was not injected: check your FXML file 'main.fxml'.";
         assert estabColumn != null : "fx:id=\"estabColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert sideColumn != null : "fx:id=\"sideColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert vehicleColumn != null : "fx:id=\"vehicleColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert nationColumn != null : "fx:id=\"nationColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert weaponColumn != null : "fx:id=\"weaponColumn\" was not injected: check your FXML file 'main.fxml'.";
-        assert removeEstabButton != null : "fx:id=\"removeEstabButton\" was not injected: check your FXML file 'main.fxml'.";
+        assert serviceColumn != null : "fx:id=\"serviceColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert selectedEstabListView != null : "fx:id=\"selectedEstabListView\" was not injected: check your FXML file 'main.fxml'.";
         assert forceColumn != null : "fx:id=\"forceColumn\" was not injected: check your FXML file 'main.fxml'.";
-        assert equipmentColumn != null : "fx:id=\"equipmentColumn\" was not injected: check your FXML file 'main.fxml'.";
-        assert maxIdColumn != null : "fx:id=\"maxIdColumn\" was not injected: check your FXML file 'main.fxml'.";
+
 
         Path examplesPath = FileSystems.getDefault().getPath(System.getProperty("user.dir"), "/src/main/resources/", ESTAB_DATA_FOLDER);
         File initialDirectory = examplesPath.toFile();
@@ -175,11 +176,16 @@ public class MainController {
         selectedEstabListView.setItems(selectedEstabList);
 
         estabColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, String>("name"));
+        imageColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numImages"));
+        sideColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numSides"));
+        nationColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numNations"));
+        serviceColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numServices"));
         forceColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numForces"));
         vehicleColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numVehicles"));
         weaponColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numWeapons"));
         ammoColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numAmmos"));
-        equipmentColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numEquipment"));
+        radioColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numRadios"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numTotal"));
         maxIdColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("maxId"));
 
         estabTable.setItems(estabDataModels);

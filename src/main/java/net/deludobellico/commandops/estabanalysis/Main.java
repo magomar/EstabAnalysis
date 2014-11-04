@@ -13,7 +13,7 @@ import java.util.prefs.Preferences;
 public class Main extends Application {
     private static final double MIN_WINDOW_WIDTH = 800  ;
     private static final double MIN_WINDOW_HEIGHT = 600;
-    private static final double PREFERRED_WINDOW_WIDTH = 800  ;
+    private static final double PREFERRED_WINDOW_WIDTH = 1024  ;
     private static final double PREFERRED_WINDOW_HEIGHT = 600;
 
     Stage primaryStage;
