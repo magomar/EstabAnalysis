@@ -1,10 +1,10 @@
-package net.deludobellico.estabanalysis.util;
+package net.deludobellico.commandops.estabanalysis.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import net.deludobellico.commandops.estabeditor.util.Settings;
 import javafx.stage.FileChooser;
-import net.deludobellico.stabeditor.util.Settings;
 import org.xml.sax.SAXParseException;
 
 import javax.xml.bind.JAXBContext;
@@ -45,11 +45,11 @@ public class FileIO {
             new FileChooser.ExtensionFilter("All (*.*)", "*.*")
     };
 
-    private static final Logger LOG = Logger.getLogger(net.deludobellico.estabanalysis.util.FileIO.class.getName());
+    private static final Logger LOG = Logger.getLogger(net.deludobellico.commandops.estabanalysis.util.FileIO.class.getName());
     /**
      * JAXB paths
      */
-    private static final String JAXB_CONTEXT_PATH = "net.deludobellico.stabeditor.data.jaxb";
+    private static final String JAXB_CONTEXT_PATH = "net.deludobellico.commandops.estabeditor.data.jaxb";
     private static JAXBContext JAXB_CONTEXT;
     private static Marshaller MARSHALLER;
     private static Unmarshaller UNMARSHALLER;
@@ -64,6 +64,7 @@ public class FileIO {
             e.printStackTrace();
         }
     }
+
     private FileIO() {
     }
 
@@ -233,6 +234,10 @@ public class FileIO {
         return null;
     }
 
+    /*********************************************************************************/
+    /*                                                                               */
+    /*********************************************************************************/
+
     public static Settings loadProperties() {
         return null;
     }
@@ -296,7 +301,7 @@ public class FileIO {
     public static File getNewEstabFile() {
         File f = null;
         try {
-            f = getFileOrCreateNew(FileSystems.getDefault().getPath(System.getProperty("user.dir"),FileIO.NEW_ESTAB_PATH).toString());
+            f = getFileOrCreateNew(FileSystems.getDefault().getPath(System.getProperty("user.dir"), FileIO.NEW_ESTAB_PATH).toString());
             FileOutputStream fos = new FileOutputStream(f, false);
             fos.write("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><estab-data></estab-data>".getBytes());
             fos.close();
