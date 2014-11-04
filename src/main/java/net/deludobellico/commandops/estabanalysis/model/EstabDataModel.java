@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import net.deludobellico.commandops.estabanalysis.util.FileIO;
-import net.deludobellico.commandops.estabeditor.data.jaxb.*;
+import net.deludobellico.commandops.estabeditor.data.jaxb.EstabData;
 import net.deludobellico.commandops.estabeditor.model.*;
 
 import java.io.File;
@@ -40,31 +40,28 @@ public class EstabDataModel {
     protected final IntegerProperty numServices = new SimpleIntegerProperty();
     protected final IntegerProperty numForces = new SimpleIntegerProperty();
     protected final IntegerProperty numEquipment = new SimpleIntegerProperty();
+    protected final IntegerProperty maxId = new SimpleIntegerProperty();
 
     public EstabDataModel(File estabDataFile) {
-        this((EstabData) FileIO.unmarshallXML(estabDataFile), estabDataFile.getName());
-    }
-
-    public EstabDataModel(EstabData estabData, String estabName) {
-        setEstabData(estabData, estabName);
+        EstabData estabData = (EstabData) FileIO.unmarshallXML(estabDataFile);
+        setEstabData(estabData, estabDataFile.getName());
     }
 
     public void setEstabData(EstabData estabData, String estabName) {
         estabData.getImage().stream().map(ImageModel::new).forEach(imageModel -> imageList.add(imageModel));
-        estabData.getVehicle().stream().map(VehicleModel::new).forEach(vehicleModel -> vehicleList.add(vehicleModel));
-        estabData.getWeapon().stream().map(WeaponModel::new).forEach(weaponModel -> weaponList.add(weaponModel));
-        estabData.getAmmo().stream().map(AmmoModel::new).forEach(ammoModel -> ammoList.add(ammoModel));
-//        estabData.getSide().stream().map(SideModel::new).forEach(sideModel ->{
-//            sideList.add(sideModel);
-//            sideModel.getNation().stream().forEach(nationModel -> {
-//                nationList.add(nationModel);
-//                nationModel.getService().stream().forEach(serviceModel -> {
-//                    serviceList.add(serviceModel);
-//                    serviceModel.getForce().stream().forEach(forceModel -> forceList.add(forceModel));
-//                });
-//            });
-//        });
-
+        estabData.getVehicle().stream().map(VehicleModel::new).forEach(vehicleModel -> track(vehicleModel,vehicleList));
+        estabData.getWeapon().stream().map(WeaponModel::new).forEach(weaponModel -> track(weaponModel, weaponList));
+        estabData.getAmmo().stream().map(AmmoModel::new).forEach(ammoModel -> track(ammoModel, ammoList));
+        estabData.getSide().stream().map(SideModel::new).forEach(sideModel -> {
+            sideList.add(sideModel);
+            sideModel.getNation().stream().forEach(nationModel -> {
+                nationList.add(nationModel);
+                nationModel.getService().stream().forEach(serviceModel -> {
+                    serviceList.add(serviceModel);
+                    serviceModel.getForce().stream().forEach(forceModel -> track(forceModel, forceList));
+                });
+            });
+        });
 
         name.set(estabName);
         numVehicles.set(vehicleList.size());
@@ -75,6 +72,12 @@ public class EstabDataModel {
         numServices.set(serviceList.size());
         numForces.set(forceList.size());
         numEquipment.bind(numVehicles.add(numWeapons.add(numAmmos)));
+        maxId.set(identifiers.length());
+    }
+
+    private <T extends ElementModel> void track(T element, List<T> list) {
+        list.add(element);
+        identifiers.set(element.getId());
     }
 
     public String getName() {
@@ -183,5 +186,17 @@ public class EstabDataModel {
 
     public void setNumEquipment(int numEquipment) {
         this.numEquipment.set(numEquipment);
+    }
+
+    public int getMaxId() {
+        return maxId.get();
+    }
+
+    public IntegerProperty maxIdProperty() {
+        return maxId;
+    }
+
+    public void setMaxId(int maxId) {
+        this.maxId.set(maxId);
     }
 }

@@ -12,6 +12,7 @@
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
           <Button mnemonicParsing="false" onAction="#analyseAction" text="Analyse" />
+            <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#mergeAction" text="Merge" />
         </items>
       </ToolBar>
         <!--<MenuBar>
@@ -77,6 +78,7 @@
                               <TableColumn fx:id="weaponColumn" prefWidth="75.0" text="Weapons" />
                               <TableColumn fx:id="ammoColumn" prefWidth="75.0" text="Ammo" />
                               <TableColumn fx:id="equipmentColumn" prefWidth="75.0" text="Equipment" />
+                              <TableColumn fx:id="maxIdColumn" prefWidth="75.0" text="Max Id" />
                           </columns>
                         </TableView>
                      </children></Pane>

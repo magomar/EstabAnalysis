@@ -24,10 +24,6 @@ public class MultiEstabDataModel extends EstabDataModel {
         super(estabDataFile);
     }
 
-    public MultiEstabDataModel(EstabData estabData, String estabName) {
-        super(estabData, estabName);
-    }
-
     @Override
     public void setEstabData(EstabData estabData, String estabName) {
         estabData.getImage().parallelStream().map(ImageModel::new).forEach(imageModel -> imageList.add(imageModel));

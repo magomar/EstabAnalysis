@@ -89,6 +89,9 @@ public class MainController {
     @FXML // fx:id="equipmentColumn"
     private TableColumn<EstabDataModel, Integer> equipmentColumn; // Value injected by FXMLLoader
 
+    @FXML // fx:id="maxIdColumn"
+    private TableColumn<EstabDataModel, Integer> maxIdColumn; // Value injected by FXMLLoader
+
     @FXML
     void addEstabAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
@@ -136,9 +139,13 @@ public class MainController {
 
     @FXML
     void analyseAction(ActionEvent event) {
-//        MultiEstabDataModel multiEstabDataModel = new MultiEstabDataModel();
         estabDataModels.clear();
         selectedEstabList.stream().map(EstabDataModel::new).forEach(estabDM -> estabDataModels.add(estabDM));
+    }
+
+    @FXML
+    void mergeAction(ActionEvent event) {
+//        MultiEstabDataModel mergedEstab= new MultiEstabDataModel(selectedEstabList);
     }
 
     @FXML
@@ -158,6 +165,7 @@ public class MainController {
         assert selectedEstabListView != null : "fx:id=\"selectedEstabListView\" was not injected: check your FXML file 'main.fxml'.";
         assert forceColumn != null : "fx:id=\"forceColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert equipmentColumn != null : "fx:id=\"equipmentColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert maxIdColumn != null : "fx:id=\"maxIdColumn\" was not injected: check your FXML file 'main.fxml'.";
 
         Path examplesPath = FileSystems.getDefault().getPath(System.getProperty("user.dir"), "/src/main/resources/", ESTAB_DATA_FOLDER);
         File initialDirectory = examplesPath.toFile();
@@ -172,6 +180,7 @@ public class MainController {
         weaponColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numWeapons"));
         ammoColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numAmmos"));
         equipmentColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numEquipment"));
+        maxIdColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("maxId"));
 
         estabTable.setItems(estabDataModels);
     }
