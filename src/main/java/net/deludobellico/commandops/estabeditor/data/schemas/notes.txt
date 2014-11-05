@@ -1,0 +1,6 @@
+Some problems derived from using the same names for different elements in the Stab.xml file
+
+For example:
+ammo is used in three different places (side, weapon and ammo), with two different forms
+size is also used in at least three places (size of force, size of vehicle and size of radio)
+speed is also used in different forms

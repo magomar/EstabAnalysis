@@ -73,17 +73,18 @@
                         <TableView fx:id="estabTable">
                           <columns>
                             <TableColumn fx:id="estabColumn" minWidth="50.0" prefWidth="150.0" text="Estab" />
-                              <TableColumn fx:id="imageColumn" prefWidth="75.0" text="Images" />
-                              <TableColumn fx:id="sideColumn" prefWidth="75.0" text="Sides" />
-                              <TableColumn fx:id="nationColumn" prefWidth="75.0" text="Nations" />
-                              <TableColumn fx:id="serviceColumn" prefWidth="75.0" text="Services" />
-                              <TableColumn fx:id="forceColumn" prefWidth="75.0" text="Forces" />
-                            <TableColumn fx:id="vehicleColumn" prefWidth="75.0" text="Vehicles" />
-                              <TableColumn fx:id="weaponColumn" prefWidth="75.0" text="Weapons" />
-                              <TableColumn fx:id="ammoColumn" prefWidth="75.0" text="Ammos" />
-                              <TableColumn fx:id="radioColumn" prefWidth="75.0" text="Radios" />
-                              <TableColumn fx:id="totalColumn" prefWidth="75.0" text="Total" />
-                              <TableColumn fx:id="maxIdColumn" prefWidth="75.0" text="Max Id" />
+                              <TableColumn fx:id="imageColumn" prefWidth="70.0" text="Images" />
+                              <TableColumn fx:id="sideColumn" prefWidth="70.0" text="Sides" />
+                              <TableColumn fx:id="nationColumn" prefWidth="70.0" text="Nations" />
+                              <TableColumn fx:id="serviceColumn" prefWidth="70.0" text="Services" />
+                              <TableColumn fx:id="forceColumn" prefWidth="70.0" text="Forces" />
+                            <TableColumn fx:id="vehicleColumn" prefWidth="70.0" text="Vehicles" />
+                              <TableColumn fx:id="weaponColumn" prefWidth="70.0" text="Weapons" />
+                              <TableColumn fx:id="ammoColumn" prefWidth="70.0" text="Ammos" />
+                              <TableColumn fx:id="radioColumn" prefWidth="70.0" text="Radios" />
+                              <TableColumn fx:id="totalColumn" prefWidth="70.0" text="Total" />
+                              <TableColumn fx:id="maxIdColumn" prefWidth="70.0" text="Max Id" />
+                              <TableColumn fx:id="numIdsColumn" prefWidth="70.0" text="Num Ids" />
                           </columns>
                         </TableView>
                      </children></Pane>

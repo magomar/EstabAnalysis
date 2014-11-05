@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
+import net.deludobellico.commandops.estabanalysis.model.*;
 import net.deludobellico.commandops.estabanalysis.model.EstabDataModel;
 import net.deludobellico.commandops.estabanalysis.util.FileIO;
 
@@ -84,6 +85,9 @@ public class MainController {
     private TableColumn<EstabDataModel, Integer> serviceColumn;
 
     @FXML
+    private TableColumn<EstabDataModel, Integer> numIdsColumn;
+
+    @FXML
     private ListView<File> selectedEstabListView;
 
     @FXML
@@ -137,15 +141,13 @@ public class MainController {
     @FXML
     void analyseAction(ActionEvent event) {
         estabDataModels.clear();
-        selectedEstabList.stream().map(EstabDataModel::new).forEach(estabDM -> {
-            estabDataModels.add(estabDM);
-            System.out.println(estabDM.toString());
-        });
+        selectedEstabList.stream().map(EstabModelFactory::getEstabModel).forEach(estabDataModels::add);
     }
 
     @FXML
     void mergeAction(ActionEvent event) {
-//        MultiEstabDataModel mergedEstab= new MultiEstabDataModel(selectedEstabList);
+        estabDataModels.add(EstabModelFactory.merge(selectedEstabList));
+        estabDataModels.add(EstabModelFactory.append(selectedEstabList));
     }
 
     @FXML
@@ -166,6 +168,7 @@ public class MainController {
         assert serviceColumn != null : "fx:id=\"serviceColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert selectedEstabListView != null : "fx:id=\"selectedEstabListView\" was not injected: check your FXML file 'main.fxml'.";
         assert forceColumn != null : "fx:id=\"forceColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert numIdsColumn != null : "fx:id=\"numIdsColumn\" was not injected: check your FXML file 'main.fxml'.";
 
 
         Path examplesPath = FileSystems.getDefault().getPath(System.getProperty("user.dir"), "/src/main/resources/", ESTAB_DATA_FOLDER);
@@ -187,6 +190,7 @@ public class MainController {
         radioColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numRadios"));
         totalColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numTotal"));
         maxIdColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("maxId"));
+        numIdsColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numIds"));
 
         estabTable.setItems(estabDataModels);
     }
