@@ -1,5 +1,6 @@
 package net.deludobellico.commandops.estabanalysis.model;
 
+import java.util.logging.Logger;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -9,6 +10,8 @@ import javafx.beans.property.StringProperty;
  * Created by Mario on 06/11/2014.
  */
 public class EstabDataModel {
+    private static final Logger LOG = Logger.getLogger(EstabDataModel.class.getName());
+    
     private final StringProperty name = new SimpleStringProperty();
     private final IntegerProperty numImages = new SimpleIntegerProperty();
     private final IntegerProperty numVehicles = new SimpleIntegerProperty();
@@ -25,6 +28,17 @@ public class EstabDataModel {
     private final IntegerProperty numIds = new SimpleIntegerProperty();
     private final IntegerProperty numRepIds = new SimpleIntegerProperty();
     private final IntegerProperty numRep = new SimpleIntegerProperty();
+
+
+    public void test() {
+        System.out.println("Some tests for " + name.get());
+        if (numTotal.get() != numImages.get() + numVehicles.get() + numWeapons.get() + numAmmos.get() +
+                numSides.get() + numNations.get() + numServices.get() + numForces.get() +
+                numRadios.get() + numFormationEffects.get()) LOG.warning("Num. total <> sum of its constituents");
+        if (numIds.get() > maxId.get()) LOG.warning("Num. Ids is greater than the MaxId");
+        if (numTotal.get() != numIds.get() + numRep.get())  LOG.warning("Num. Total <> sum of ids + repetitions");
+
+    }
 
     public String getName() {
         return name.get();

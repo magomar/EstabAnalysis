@@ -154,6 +154,9 @@ public class MainController {
     void mergeAction(ActionEvent event) {
         estabDataModels.add(EstabModelFactory.merge(selectedEstabList));
         estabDataModels.add(EstabModelFactory.append(selectedEstabList));
+        for (EstabDataModel estabDataModel : estabDataModels) {
+            estabDataModel.test();
+        }
     }
 
     @FXML
