@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.deludobellico.commandops.estabanalysis.controller.MainController">
+<VBox minHeight="600.0" minWidth="800.0" prefHeight="600.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.deludobellico.commandops.estabanalysis.controller.MainController">
     <children>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
@@ -15,35 +15,9 @@
             <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" onAction="#mergeAction" text="Merge" />
         </items>
       </ToolBar>
-        <!--<MenuBar>
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#openEstabAction" text="Open">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="O" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                        <MenuItem mnemonicParsing="false" onAction="#newEstabAction" text="New">
-                     <accelerator>
-                        <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
-                     </accelerator></MenuItem>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>-->
         <HBox style="-fx-border-width: 10;">
             <children>
-                <TitledPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="350.0" prefHeight="150.0" prefWidth="500.0" text="Available Estabs">
+                <TitledPane  minWidth="350.0" prefHeight="150.0" prefWidth="500.0" text="Available Estabs">
                     <content>
                         <ListView fx:id="availableEstabListView" />
                     </content>
@@ -72,19 +46,21 @@
                      <children>
                         <TableView fx:id="estabTable">
                           <columns>
-                            <TableColumn fx:id="estabColumn" minWidth="50.0" prefWidth="150.0" text="Estab" />
-                              <TableColumn fx:id="imageColumn" prefWidth="70.0" text="Images" />
-                              <TableColumn fx:id="sideColumn" prefWidth="70.0" text="Sides" />
-                              <TableColumn fx:id="nationColumn" prefWidth="70.0" text="Nations" />
-                              <TableColumn fx:id="serviceColumn" prefWidth="70.0" text="Services" />
-                              <TableColumn fx:id="forceColumn" prefWidth="70.0" text="Forces" />
-                            <TableColumn fx:id="vehicleColumn" prefWidth="70.0" text="Vehicles" />
-                              <TableColumn fx:id="weaponColumn" prefWidth="70.0" text="Weapons" />
-                              <TableColumn fx:id="ammoColumn" prefWidth="70.0" text="Ammos" />
-                              <TableColumn fx:id="radioColumn" prefWidth="70.0" text="Radios" />
-                              <TableColumn fx:id="totalColumn" prefWidth="70.0" text="Total" />
-                              <TableColumn fx:id="maxIdColumn" prefWidth="70.0" text="Max Id" />
-                              <TableColumn fx:id="numIdsColumn" prefWidth="70.0" text="Num Ids" />
+                            <TableColumn fx:id="estabColumn" minWidth="50.0" prefWidth="110.0" text="Estab" />
+                              <TableColumn fx:id="imageColumn" prefWidth="65.0" text="Images" />
+                              <TableColumn fx:id="sideColumn" prefWidth="65.0" text="Sides" />
+                              <TableColumn fx:id="nationColumn" prefWidth="65.0" text="Nations" />
+                              <TableColumn fx:id="serviceColumn" prefWidth="65.0" text="Services" />
+                              <TableColumn fx:id="forceColumn" prefWidth="65.0" text="Forces" />
+                            <TableColumn fx:id="vehicleColumn" prefWidth="65.0" text="Vehicles" />
+                              <TableColumn fx:id="weaponColumn" prefWidth="65.0" text="Weapons" />
+                              <TableColumn fx:id="ammoColumn" prefWidth="65.0" text="Ammos" />
+                              <TableColumn fx:id="radioColumn" prefWidth="65.0" text="Radios" />
+                              <TableColumn fx:id="totalColumn" prefWidth="65.0" text="Total" />
+                              <TableColumn fx:id="maxIdColumn" prefWidth="65.0" text="MaxId" />
+                              <TableColumn fx:id="numIdsColumn" prefWidth="65.0" text="NumIds" />
+                              <TableColumn fx:id="numRepIdsColumn" prefWidth="65.0" text="NumRepIds" />
+                              <TableColumn fx:id="numRepColumn" prefWidth="65.0" text="NumRep" />
                           </columns>
                         </TableView>
                      </children></Pane>

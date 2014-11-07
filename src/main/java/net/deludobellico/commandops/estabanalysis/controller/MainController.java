@@ -94,6 +94,12 @@ public class MainController {
     private TableColumn<EstabDataModel, Integer> forceColumn;
 
     @FXML
+    private TableColumn<EstabDataModel, Integer> numRepIdsColumn;
+
+    @FXML
+    private TableColumn<EstabDataModel, Integer> numRepColumn;
+
+    @FXML
     void addEstabAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         Path examplesPath = FileSystems.getDefault().getPath(System.getProperty("user.dir"), "/src/main/resources/", ESTAB_DATA_FOLDER);
@@ -169,6 +175,8 @@ public class MainController {
         assert selectedEstabListView != null : "fx:id=\"selectedEstabListView\" was not injected: check your FXML file 'main.fxml'.";
         assert forceColumn != null : "fx:id=\"forceColumn\" was not injected: check your FXML file 'main.fxml'.";
         assert numIdsColumn != null : "fx:id=\"numIdsColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert numRepIdsColumn != null : "fx:id=\"numRepIdsColumn\" was not injected: check your FXML file 'main.fxml'.";
+        assert numRepColumn != null : "fx:id=\"numRepColumn\" was not injected: check your FXML file 'main.fxml'.";
 
 
         Path examplesPath = FileSystems.getDefault().getPath(System.getProperty("user.dir"), "/src/main/resources/", ESTAB_DATA_FOLDER);
@@ -191,7 +199,8 @@ public class MainController {
         totalColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numTotal"));
         maxIdColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("maxId"));
         numIdsColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numIds"));
-
+        numRepIdsColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numRepIds"));
+        numRepColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numRep"));
         estabTable.setItems(estabDataModels);
     }
 }

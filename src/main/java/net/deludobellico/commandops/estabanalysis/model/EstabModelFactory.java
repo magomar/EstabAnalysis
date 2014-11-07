@@ -20,35 +20,37 @@ public class EstabModelFactory {
     }
 
     public static EstabDataModel getEstabDataModel(String estabName, EstabData estabData) {
-        EstabDataModelBuilder modelBuilder = new SingleEstabDataModelBuilder(estabName, estabData);
-        return modelBuilder.getEstabDataModel();
+        MultiModelCollection multiModelCollection = new MultiModelCollection(estabName, estabData);
+        return multiModelCollection.getEstabDataModelAppended();
     }
 
 
     public static EstabDataModel append(List<File> estabFiles) {
-        List<EstabData> estabDataList = new ArrayList<>(estabFiles.size());
         StringBuilder stringBuilder = new StringBuilder("A_");
         for (File estabFile : estabFiles) {
             String filename = estabFile.getName();
             stringBuilder.append(filename.substring(0, 2));
-            estabDataList.add((EstabData) FileIO.unmarshallXML(estabFile));
         }
         String estabName = stringBuilder.toString();
-        EstabDataModelBuilder modelBuilder = new EstabDataModelAppender(estabName, estabDataList);
-        return modelBuilder.getEstabDataModel();
+        MultiModelCollection multiModelCollection = new MultiModelCollection(estabName);
+        for (File estabFile : estabFiles) {
+            multiModelCollection.addEstabData((EstabData) FileIO.unmarshallXML(estabFile));
+        }
+        return multiModelCollection.getEstabDataModelAppended();
     }
 
     public static EstabDataModel merge(List<File> estabFiles) {
-        List<EstabData> estabDataList = new ArrayList<>(estabFiles.size());
         StringBuilder stringBuilder = new StringBuilder("M_");
         for (File estabFile : estabFiles) {
             String filename = estabFile.getName();
             stringBuilder.append(filename.substring(0, 2));
-            estabDataList.add((EstabData) FileIO.unmarshallXML(estabFile));
         }
         String estabName = stringBuilder.toString();
-        EstabDataModelBuilder modelBuilder = new EstabDataModelMerger(estabName, estabDataList);
-        return modelBuilder.getEstabDataModel();
+        MultiModelCollection multiModelCollection = new MultiModelCollection(estabName);
+        for (File estabFile : estabFiles) {
+            multiModelCollection.addEstabData((EstabData) FileIO.unmarshallXML(estabFile));
+        }
+        return multiModelCollection.getEstabDataModelMerged();
     }
 
 }

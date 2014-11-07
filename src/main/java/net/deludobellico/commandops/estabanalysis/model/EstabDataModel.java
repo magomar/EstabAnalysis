@@ -4,11 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import net.deludobellico.commandops.estabeditor.model.*;
-
-import java.util.ArrayList;
-import java.util.BitSet;
-import java.util.List;
 
 /**
  * Created by Mario on 06/11/2014.
@@ -28,6 +23,8 @@ public class EstabDataModel {
     private final IntegerProperty numTotal = new SimpleIntegerProperty();
     private final IntegerProperty maxId = new SimpleIntegerProperty();
     private final IntegerProperty numIds = new SimpleIntegerProperty();
+    private final IntegerProperty numRepIds = new SimpleIntegerProperty();
+    private final IntegerProperty numRep = new SimpleIntegerProperty();
 
     public String getName() {
         return name.get();
@@ -197,6 +194,29 @@ public class EstabDataModel {
         this.numIds.set(numIds);
     }
 
+    public int getNumRepIds() {
+        return numRepIds.get();
+    }
+
+    public IntegerProperty numRepIdsProperty() {
+        return numRepIds;
+    }
+
+    public void setNumRepIds(int numRepIds) {
+        this.numRepIds.set(numRepIds);
+    }
+
+    public int getNumRep() {
+        return numRep.get();
+    }
+
+    public IntegerProperty numRepProperty() {
+        return numRep;
+    }
+
+    public void setNumRep(int numRep) {
+        this.numRep.set(numRep);
+    }
 
     @Override
     public String toString() {
@@ -215,6 +235,8 @@ public class EstabDataModel {
                 ", numTotal=" + numTotal.get() +
                 ", maxId=" + maxId.get() +
                 ", numIds=" + numIds.get() +
+                ", numRepIds=" + numRepIds.get() +
+                ", numRep=" + numRep.get() +
                 '}';
     }
 }
