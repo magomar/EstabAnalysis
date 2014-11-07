@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
@@ -31,7 +27,7 @@
                   <Button alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="85.0" minWidth="60.0" mnemonicParsing="false" onAction="#discardEstabAction" text="X" />
                     </children>
                 </VBox>
-            <TitledPane layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="350.0" prefHeight="150.0" prefWidth="500.0" text="Selected Estabs">
+            <TitledPane layoutX="10.0" layoutY="10.0"  minWidth="350.0" prefHeight="150.0" prefWidth="500.0" text="Selected Estabs">
                <content>
                   <ListView fx:id="selectedEstabListView" />
                </content>
@@ -58,18 +54,13 @@
                               <TableColumn fx:id="radioColumn" prefWidth="65.0" text="Radios" />
                               <TableColumn fx:id="totalColumn" prefWidth="65.0" text="Total" />
                               <TableColumn fx:id="maxIdColumn" prefWidth="65.0" text="MaxId" />
-                              <TableColumn fx:id="numIdsColumn" prefWidth="65.0" text="NumIds" />
-                              <TableColumn fx:id="numRepIdsColumn" prefWidth="65.0" text="NumRepIds" />
-                              <TableColumn fx:id="numRepColumn" prefWidth="65.0" text="NumRep" />
+                              <TableColumn fx:id="numIdsColumn" prefWidth="65.0" text="#Ids" />
+                              <TableColumn fx:id="numRepIdsColumn" prefWidth="65.0" text="#RepIds" />
+                              <TableColumn fx:id="numRepColumn" prefWidth="65.0" text="#Rep" />
                           </columns>
                         </TableView>
                      </children></Pane>
                </content>
-          </Tab>
-          <Tab text="Graph">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
           </Tab>
         </tabs>
       </TabPane>

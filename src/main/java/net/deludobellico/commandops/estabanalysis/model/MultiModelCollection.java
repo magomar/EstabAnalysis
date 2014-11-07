@@ -72,20 +72,7 @@ public class MultiModelCollection {
     }
 
     public EstabDataModel getEstabDataModelAppended() {
-        EstabDataModel m = new EstabDataModel();
-        m.setName(estabName);
-
-        int nTotal = 0;
-        BitSet identifiers = new BitSet(4000);
-        BitSet repeatedIds = new BitSet(4000);
-        int repetitions = 0;
-        for (ModelCollection modelCollection : all) {
-            nTotal += modelCollection.getListSize();
-            identifiers.or(modelCollection.getIdentifiers());
-            repeatedIds.or(modelCollection.getRepeatedIds());
-            repetitions += modelCollection.getRepetitions();
-        }
-
+        EstabDataModel m = getPartialEstabDataModel();
         m.setNumImages(images.getListSize());
         m.setNumVehicles(vehicles.getListSize());
         m.setNumWeapons(weapons.getListSize());
@@ -96,30 +83,11 @@ public class MultiModelCollection {
         m.setNumForces(forces.getListSize());
         m.setNumRadios(radios.getListSize());
         m.setNumFormationEffects(formationEffects.getListSize());
-
-        m.setNumTotal(nTotal);
-        m.setMaxId(identifiers.length());
-        m.setNumIds(identifiers.cardinality());
-        m.setNumRepIds(repeatedIds.cardinality());
-        m.setNumRep(repetitions);
         return m;
     }
 
     public EstabDataModel getEstabDataModelMerged() {
-        EstabDataModel m = new EstabDataModel();
-        m.setName(estabName);
-
-        int nTotal = 0;
-        BitSet identifiers = new BitSet(4000);
-        BitSet repeatedIds = new BitSet(4000);
-        int repetitions = 0;
-        for (ModelCollection modelCollection : all) {
-            nTotal += modelCollection.getSetSize();
-            identifiers.or(modelCollection.getIdentifiers());
-            repeatedIds.or(modelCollection.getRepeatedIds());
-            repetitions += modelCollection.getRepetitions();
-        }
-
+        EstabDataModel m = getPartialEstabDataModel();
         m.setNumImages(images.getSetSize());
         m.setNumVehicles(vehicles.getSetSize());
         m.setNumWeapons(weapons.getSetSize());
@@ -130,7 +98,22 @@ public class MultiModelCollection {
         m.setNumForces(forces.getSetSize());
         m.setNumRadios(radios.getSetSize());
         m.setNumFormationEffects(formationEffects.getSetSize());
+        return m;
+    }
 
+    private EstabDataModel getPartialEstabDataModel() {
+        EstabDataModel m = new EstabDataModel();
+        m.setName(estabName);
+        int nTotal = 0;
+        BitSet identifiers = new BitSet(4000);
+        BitSet repeatedIds = new BitSet(4000);
+        int repetitions = 0;
+        for (ModelCollection modelCollection : all) {
+            nTotal += modelCollection.getSetSize();
+            identifiers.or(modelCollection.getIdentifiers());
+            repeatedIds.or(modelCollection.getRepeatedIds());
+            repetitions += modelCollection.getRepetitions();
+        }
         m.setNumTotal(nTotal);
         m.setMaxId(identifiers.length());
         m.setNumIds(identifiers.cardinality());
