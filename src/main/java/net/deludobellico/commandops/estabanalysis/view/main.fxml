@@ -55,6 +55,7 @@
                               <TableColumn fx:id="totalColumn" prefWidth="65.0" text="Total" />
                               <TableColumn fx:id="maxIdColumn" prefWidth="65.0" text="MaxId" />
                               <TableColumn fx:id="numIdsColumn" prefWidth="65.0" text="#Ids" />
+                              <TableColumn fx:id="numStaticIdsColumn" prefWidth="65.0" text="#StaticIds" />
                               <TableColumn fx:id="numRepIdsColumn" prefWidth="65.0" text="#RepIds" />
                               <TableColumn fx:id="numRepColumn" prefWidth="65.0" text="#Rep" />
                           </columns>

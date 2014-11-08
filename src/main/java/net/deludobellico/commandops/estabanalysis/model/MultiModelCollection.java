@@ -1,7 +1,7 @@
 package net.deludobellico.commandops.estabanalysis.model;
 
 import net.deludobellico.commandops.estabeditor.data.jaxb.EstabData;
-import net.deludobellico.commandops.estabeditor.model.*;
+import net.deludobellico.commandops.estabeditor.model.id.*;
 
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -24,6 +24,7 @@ public class MultiModelCollection {
     private final ModelCollection<RadioModel> radios = new ModelCollection<>();
     private final ModelCollection<FormationEffectsModel> formationEffects = new ModelCollection<>();
     private final List<ModelCollection> all = new ArrayList<>(10);
+    public static final BitSet STATIC_IDS = new BitSet(4000);
 
     public MultiModelCollection(String estabName) {
         this.estabName = estabName;
@@ -104,9 +105,7 @@ public class MultiModelCollection {
         m.setNumRadios(radios.getSetSize());
         m.setNumFormationEffects(formationEffects.getSetSize());
         int nTotal = 0;
-        for (ModelCollection modelCollection : all) {
-            nTotal += modelCollection.getSetSize();
-        }
+        for (ModelCollection modelCollection : all) nTotal += modelCollection.getSetSize();
         m.setNumTotal(nTotal);
         return m;
     }
@@ -118,12 +117,15 @@ public class MultiModelCollection {
         BitSet repeatedIds = new BitSet(4000);
         int repetitions = 0;
         for (ModelCollection modelCollection : all) {
+            // only works with mode.id, model.hash detects repeated elements
+            //assert modelCollection.getSetSize() == modelCollection.getIdentifiers().cardinality();
             identifiers.or(modelCollection.getIdentifiers());
             repeatedIds.or(modelCollection.getRepeatedIds());
             repetitions += modelCollection.getRepetitions();
         }
         m.setMaxId(identifiers.length());
         m.setNumIds(identifiers.cardinality());
+        m.setNumStaticIdsColumn(STATIC_IDS.cardinality());
         m.setNumRepIds(repeatedIds.cardinality());
         m.setNumRep(repetitions);
         return m;

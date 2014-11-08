@@ -20,12 +20,14 @@ public class EstabModelFactory {
     }
 
     public static EstabDataModel getEstabDataModel(String estabName, EstabData estabData) {
+        MultiModelCollection.STATIC_IDS.clear();
         MultiModelCollection multiModelCollection = new MultiModelCollection(estabName, estabData);
         return multiModelCollection.getEstabDataModelAppended();
     }
 
 
     public static EstabDataModel append(List<File> estabFiles) {
+        MultiModelCollection.STATIC_IDS.clear();
         StringBuilder stringBuilder = new StringBuilder("A_");
         for (File estabFile : estabFiles) {
             String filename = estabFile.getName();
@@ -40,6 +42,7 @@ public class EstabModelFactory {
     }
 
     public static EstabDataModel merge(List<File> estabFiles) {
+        MultiModelCollection.STATIC_IDS.clear();
         StringBuilder stringBuilder = new StringBuilder("M_");
         for (File estabFile : estabFiles) {
             String filename = estabFile.getName();

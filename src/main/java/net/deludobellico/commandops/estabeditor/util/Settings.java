@@ -4,6 +4,7 @@ import net.deludobellico.commandops.estabanalysis.util.FileIO;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,8 +14,8 @@ import java.util.List;
 public class Settings {
 
     private static final Integer MAX_RECENT_FILES = 4;
-    private static List<String> sourceRecentFiles = new LimitedLinkedList<>(MAX_RECENT_FILES);
-    private static List<String> targetRecentFiles = new LimitedLinkedList<>(MAX_RECENT_FILES);
+    private static List<String> sourceRecentFiles = new LinkedList<>();
+    private static List<String> targetRecentFiles = new LinkedList<>();
     private static Settings settings;
     private static String lastOpenedFolder;
     private static Double windowWidth;

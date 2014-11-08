@@ -28,6 +28,7 @@ public class EstabDataModel {
     private final IntegerProperty numIds = new SimpleIntegerProperty();
     private final IntegerProperty numRepIds = new SimpleIntegerProperty();
     private final IntegerProperty numRep = new SimpleIntegerProperty();
+    private final IntegerProperty numStaticIdsColumn = new SimpleIntegerProperty();
 
 
     public void test() {
@@ -230,6 +231,18 @@ public class EstabDataModel {
 
     public void setNumRep(int numRep) {
         this.numRep.set(numRep);
+    }
+
+    public int getNumStaticIdsColumn() {
+        return numStaticIdsColumn.get();
+    }
+
+    public IntegerProperty numStaticIdsColumnProperty() {
+        return numStaticIdsColumn;
+    }
+
+    public void setNumStaticIdsColumn(int numStaticIdsColumn) {
+        this.numStaticIdsColumn.set(numStaticIdsColumn);
     }
 
     @Override
