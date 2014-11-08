@@ -35,6 +35,7 @@ public class MainController {
         }
     };
 
+
     private ObservableList<File> availableEstabList = FXCollections.observableArrayList();
     private ObservableList<File> selectedEstabList = FXCollections.observableArrayList();
     private ObservableList<EstabDataModel> estabDataModels = FXCollections.observableArrayList();
@@ -86,6 +87,9 @@ public class MainController {
 
     @FXML
     private TableColumn<EstabDataModel, Integer> numIdsColumn;
+
+    @FXML
+    private  TableColumn<EstabDataModel, Integer> numStaticIdsColumn;
 
     @FXML
     private ListView<File> selectedEstabListView;
@@ -202,6 +206,7 @@ public class MainController {
         totalColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numTotal"));
         maxIdColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("maxId"));
         numIdsColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numIds"));
+        numStaticIdsColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numStaticIdsColumn"));
         numRepIdsColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numRepIds"));
         numRepColumn.setCellValueFactory(new PropertyValueFactory<EstabDataModel, Integer>("numRep"));
         estabTable.setItems(estabDataModels);

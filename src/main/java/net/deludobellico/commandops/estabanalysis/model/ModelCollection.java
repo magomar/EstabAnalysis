@@ -1,15 +1,18 @@
 package net.deludobellico.commandops.estabanalysis.model;
 
-import net.deludobellico.commandops.estabeditor.model.ElementModel;
+import net.deludobellico.commandops.estabeditor.model.id.ElementModel;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
  * Created by Mario on 06/11/2014.
  */
 public class ModelCollection<T extends ElementModel> {
-    private final List<T> list = new ArrayList<>();
+    private static final Logger LOG = Logger.getLogger(ModelCollection.class.getName());
+    private final List<T> list = new LinkedList<>();
     private final Set<T> set = new HashSet<>();
     private final BitSet identifiers = new BitSet();
     private final BitSet repeatedIds = new BitSet();
@@ -18,9 +21,10 @@ public class ModelCollection<T extends ElementModel> {
     public void track(T element) {
         list.add(element);
         int id = element.getId();
-        if (!identifiers.get(id)) {
-            set.add(element);
-            identifiers.set(id);
+        if (!identifiers.get(id)) identifiers.set(id);
+        if (!MultiModelCollection.STATIC_IDS.get(id)) {
+            if(!set.add(element)) LOG.log(Level.WARNING,"Element in set: " + element.print());
+            MultiModelCollection.STATIC_IDS.set(id);
         } else {
             repeatedIds.set(id);
             repetitions++;
