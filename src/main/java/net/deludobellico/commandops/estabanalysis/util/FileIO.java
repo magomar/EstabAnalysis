@@ -32,7 +32,7 @@ public class FileIO {
     /**
      * File  and folder paths
      */
-    public static final String MAIN_VIEW = "./view/main.fxml";
+    public static final String MAIN_VIEW = "/views/main.fxml";
     public static final String SETTINGS_XML_FILE = "settings.xml";
     public static final String RESOURCES_FOLDER = "/src/main/resources";
     public static final String ESTAB_DATASETS_FOLDER = RESOURCES_FOLDER + "/datasets";
